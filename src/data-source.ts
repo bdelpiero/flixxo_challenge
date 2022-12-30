@@ -1,6 +1,9 @@
 import { DataSource } from "typeorm"
 
+<<<<<<< HEAD
 // TODO: fix port type
+=======
+>>>>>>> 97d4f8332993368af51d99fa0ecf1c293073803a
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST,
