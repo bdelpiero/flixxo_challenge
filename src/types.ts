@@ -3,3 +3,8 @@ export interface IToken {
   name: string
   additionalInfo?: string
 }
+
+export interface ITokenPrice {
+  tokenSymbol: string
+  price: number
+}
