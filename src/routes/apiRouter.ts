@@ -1,8 +1,10 @@
-import { Request, Response, Router } from "express"
-import { appendFile } from "fs"
+import { Router } from "express"
+import tokenController from "../controllers/token.controller"
 
 const router = Router()
 
-router.all("/", (req: Request, res: Response) => res.send("api"))
+router.get("/token", tokenController.getToken)
+router.post("/token", tokenController.createToken)
+router.get("/tokens", tokenController.getAllTokens)
 
 export default router
