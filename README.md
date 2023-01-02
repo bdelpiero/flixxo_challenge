@@ -26,6 +26,7 @@ Rest API that keeps track of crypto tokens and its historical prices
 ## Running
 
 - clone the repo
+- create `.env` file in root folder (you can use `example.env`)
 - `docker-compose up --build` 🚀
 
 Visit [localhost:3000](http://localhost:3000/).
@@ -36,7 +37,7 @@ Visit [localhost:3000](http://localhost:3000/).
 
 SQL injection es un tipo de ataque informático en el que un atacante introduce código malicioso en una consulta SQL con el fin de alterar o acceder a datos no autorizados en una base de datos.
 
-Algunas prácticas comunes para prevenir estos ataques son: validar y sanear el input de usuario, utilizar declaraciones preparadas (prepared statements) y parámetro (por ej, usando ORMs), usar contraseñas seguras y encriptar la información sensibles, mantener el sistema actualizado, etc.
+Algunas prácticas comunes para prevenir estos ataques son: validar y sanear el input de usuario, utilizar declaraciones preparadas (prepared statements) y parámetros (por ej, usando ORMs), usar contraseñas seguras y encriptar la información sensibles, mantener el sistema actualizado, etc.
 
 - ¿Cuándo es conveniente utilizar SQL Transactions? Dar un ejemplo.
 
@@ -117,6 +118,8 @@ If the login was successful, it will return a token that can be used for authent
 | :-------- | :------- | :------------------------------------------- |
 | `symbol`  | `string` | **Required**. Token's symbol (BTC, ETH, etc) |
 
+returns the token `symbol`, `name` and `additionaInfomation` (optional)
+
 #### Add token
 
 ```http
@@ -124,6 +127,7 @@ If the login was successful, it will return a token that can be used for authent
 ```
 
 Authorization
+
 This endpoint requires a JSON Web Token (JWT) for authorization. To include the JWT in the request, add an Authorization header with the value Bearer YOUR_JWT_TOKEN_HERE.
 
 Request Body
@@ -141,10 +145,11 @@ Content-Type: application/json
 #### Update token info
 
 ```http
-  POST /api/token
+  PUT /api/token
 ```
 
 Authorization
+
 This endpoint requires a JSON Web Token (JWT) for authorization. To include the JWT in the request, add an Authorization header with the value Bearer YOUR_JWT_TOKEN_HERE.
 
 Request Body
@@ -186,6 +191,7 @@ returns the latest price for the token
 ```
 
 Authorization
+
 This endpoint requires a JSON Web Token (JWT) for authorization. To include the JWT in the request, add an Authorization header with the value Bearer YOUR_JWT_TOKEN_HERE.
 
 Request Body
