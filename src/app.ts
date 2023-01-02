@@ -1,10 +1,10 @@
 import express, { NextFunction, Request, Response } from "express"
 import cors from "cors"
 import dotenv from "dotenv"
-import { initDbConnection } from "./db/initDbConnection"
 import { AppError } from "./utils/AppError"
 import { errorHandler } from "./middleware/errorHandler"
 import apiRouter from "./routes/apiRouter"
+import { initDataSource } from "./db/dataSource"
 
 dotenv.config()
 
@@ -30,5 +30,5 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
 })
 ;(async () => {
-  await initDbConnection()
+  await initDataSource()
 })()

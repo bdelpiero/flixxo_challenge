@@ -14,3 +14,13 @@ export const AppDataSource = new DataSource({
   logging: false,
   subscribers: [],
 })
+
+export const initDataSource = async () => {
+  try {
+    await AppDataSource.initialize()
+    console.log("Data Source has been initialized!")
+  } catch (err) {
+    console.log(`Error during Data source initialization: ${err}`)
+  }
+  return null
+}
