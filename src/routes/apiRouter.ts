@@ -6,7 +6,7 @@ const router = Router()
 
 router.get("/token", tokenController.getToken)
 router.post("/token", tokenController.createToken)
-// TODO: update token route
+router.put("/token", tokenController.updateToken)
 router.get("/tokens", tokenController.getAllTokens)
 
 router.get("/price", tokenPriceController.getTokenPrice)

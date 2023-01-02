@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { AppError } from "../utils/AppError"
 import tokenService from "../services/token.service"
-import { IToken } from "../types"
+import { IToken, TokenToUpdate } from "../types"
 
 const getToken = async (req: Request, res: Response, next: NextFunction) => {
   const tokenSymbol = req.query.symbol as string
@@ -41,6 +41,26 @@ const createToken = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
+const updateToken = async (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = req.body as TokenToUpdate | null
+
+  // move to validator middleware?
+  if (!tokenData) {
+    return next(new AppError(400, "No body provided in the request"))
+  }
+  // TODO: use class-validator and DTO
+  if (!tokenData.symbol) {
+    return next(new AppError(400, "Incorrect request body. Symbol is mandatory"))
+  }
+
+  try {
+    const token = await tokenService.updateToken(tokenData)
+    res.send(token)
+  } catch (error) {
+    return next(new AppError(500, error))
+  }
+}
+
 const getAllTokens = async (_: Request, res: Response, next: NextFunction) => {
   try {
     const tokens = await tokenService.getAllTokens()
@@ -49,4 +69,5 @@ const getAllTokens = async (_: Request, res: Response, next: NextFunction) => {
     return next(new AppError(500, error))
   }
 }
-export default { getToken, createToken, getAllTokens }
+
+export default { getToken, createToken, updateToken, getAllTokens }
