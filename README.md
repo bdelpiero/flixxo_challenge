@@ -2,7 +2,7 @@
 
 Rest API that keeps track of crypto tokens and its historical prices
 
-## Table of content
+## Table of contents
 
 - [Requirements](#requirements)
 - [Running](#running)
