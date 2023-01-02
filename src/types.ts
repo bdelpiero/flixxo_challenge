@@ -10,3 +10,8 @@ export interface ITokenPrice {
 }
 
 export type TokenToUpdate = Partial<IToken> & Pick<IToken, "symbol">
+
+export interface IUser {
+  email: string
+  password: string
+}
