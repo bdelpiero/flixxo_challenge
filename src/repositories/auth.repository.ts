@@ -1,4 +1,4 @@
-import { AppDataSource } from "../db/dataSource"
+import { AppDataSource } from "../db/data-source"
 import { User } from "../entities/user.entity"
 import { IUser } from "../types"
 import jwt from "jsonwebtoken"

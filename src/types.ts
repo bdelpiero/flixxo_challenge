@@ -6,7 +6,7 @@ export interface IToken {
 
 export interface ITokenPrice {
   tokenSymbol: string
-  price: number
+  value: number
 }
 
 export type TokenToUpdate = Partial<IToken> & Pick<IToken, "symbol">
@@ -14,4 +14,8 @@ export type TokenToUpdate = Partial<IToken> & Pick<IToken, "symbol">
 export interface IUser {
   email: string
   password: string
+}
+
+export interface ClassType<T> extends Function {
+  new (...args: any[]): T
 }

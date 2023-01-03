@@ -1,4 +1,4 @@
-import { AppDataSource } from "../db/dataSource"
+import { AppDataSource } from "../db/data-source"
 import { Token } from "../entities/token.entity"
 import { IToken, TokenToUpdate } from "../types"
 
@@ -34,8 +34,7 @@ const updateToken = async (tokenData: TokenToUpdate) => {
   // with a correct dto validation, I could just pass {...tokenData} to the save function
   return await tokenRepository.save({
     id: token.id,
-    name: tokenData.name || token.name,
-    additionalInfo: tokenData.additionalInfo || token.additionalInfo,
+    ...tokenData,
   })
 }
 
