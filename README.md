@@ -1,6 +1,6 @@
 # Flixxo Backend Developer Challenge
 
-Rest API that keeps track of crypto tokens and its historical prices
+Rest API that keeps track of crypto tokens and their historical prices
 
 ## Table of contents
 
@@ -30,6 +30,8 @@ Rest API that keeps track of crypto tokens and its historical prices
 - `docker-compose up --build` 🚀
 
 Visit [localhost:3000](http://localhost:3000/).
+
+The database is filled with fake data on project setup.
 
 ## Q&A
 
