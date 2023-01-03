@@ -6,6 +6,7 @@ import tokenRepository from "./token.service"
 const getLastTokenPrice = async (tokenSymbol: string) => {
   const tokenPriceRepository = AppDataSource.getRepository(TokenPrice)
 
+  // TODO: move to common validation function?
   const token = await tokenRepository.getToken(tokenSymbol)
   if (!token) {
     throw Error(`Token ${tokenSymbol} does not exist in our database`)
