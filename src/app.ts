@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 import { AppError } from "./utils/AppError"
 import { errorHandler } from "./middleware/errorHandler"
 import apiRouter from "./routes/apiRouter"
-import { initDataSource } from "./db/dataSource"
+import { initDataSource } from "./db/data-source"
 
 dotenv.config()
 

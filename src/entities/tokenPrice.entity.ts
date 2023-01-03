@@ -7,7 +7,7 @@ export class TokenPrice {
   id: number
 
   @Column()
-  value: number
+  value: string
 
   @ManyToOne(() => Token, (token) => token.prices)
   token: Token

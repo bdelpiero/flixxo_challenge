@@ -1,7 +1,8 @@
-import { DataSource } from "typeorm"
+import { DataSource, DataSourceOptions } from "typeorm"
+import { runSeeders, SeederOptions } from "typeorm-extension"
 
 // TODO: fix port type
-export const AppDataSource = new DataSource({
+const options: DataSourceOptions & SeederOptions = {
   type: "mysql",
   host: process.env.DB_HOST,
   port: Number(process?.env?.DB_PORT),
@@ -13,11 +14,16 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   subscribers: [],
-})
+  seeds: ["src/db/seeds/**/*{.ts,.js}"],
+  factories: ["src/db/factories/**/*{.ts,.js}"],
+}
+
+export const AppDataSource = new DataSource(options)
 
 export const initDataSource = async () => {
   try {
-    await AppDataSource.initialize()
+    const dataSource = await AppDataSource.initialize()
+    await runSeeders(dataSource)
     console.log("Data Source has been initialized!")
   } catch (err) {
     console.log(`Error during Data source initialization: ${err}`)
