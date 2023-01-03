@@ -9,5 +9,4 @@ export const initDataSource = async () => {
   } catch (err) {
     console.log(`Error during Data source initialization: ${err}`)
   }
-  return null
 }
