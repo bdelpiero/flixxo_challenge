@@ -140,7 +140,7 @@ Content-Type: application/json
 {
   "symbol": "BTC",
   "name": "bitcoin",
-  "additionalInfo": "relevant information"
+  "additionalInfo"?: "relevant information"
 }
 ```
 
@@ -184,12 +184,12 @@ returns a list of supported tokens (`symbol`, `name` and `additionalInfo`)
 | :-------- | :------- | :------------------------------------------- |
 | `symbol`  | `string` | **Required**. Token's symbol (BTC, ETH, etc) |
 
-returns the latest price for the token
+returns the latest token price
 
 #### Add token price
 
 ```http
-  POST /api/token
+  POST /api/price
 ```
 
 Authorization
@@ -203,7 +203,7 @@ Content-Type: application/json
 ```
 {
   "tokenSymbol": "BTC",
-  "value": "bitcoin",
+  "value": 16000.20,
 }
 ```
 
