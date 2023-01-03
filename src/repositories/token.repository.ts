@@ -1,6 +1,6 @@
 import { AppDataSource } from "../db/data-source"
+import { TokenDTO, TokenUpdateDTO } from "../dtos/token.dto"
 import { Token } from "../entities/token.entity"
-import { IToken, TokenToUpdate } from "../types"
 
 const getToken = async (tokenSymbol: string) => {
   const tokenRepository = AppDataSource.getRepository(Token)
@@ -10,7 +10,7 @@ const getToken = async (tokenSymbol: string) => {
   })
 }
 
-const createToken = async (tokenData: IToken) => {
+const createToken = async (tokenData: TokenDTO) => {
   const tokenRepository = AppDataSource.getRepository(Token)
 
   const token = new Token()
@@ -21,7 +21,7 @@ const createToken = async (tokenData: IToken) => {
   return await tokenRepository.save(token)
 }
 
-const updateToken = async (tokenData: TokenToUpdate) => {
+const updateToken = async (tokenData: TokenUpdateDTO) => {
   const tokenRepository = AppDataSource.getRepository(Token)
   const { symbol } = tokenData
 

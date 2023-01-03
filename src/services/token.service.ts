@@ -1,15 +1,15 @@
+import { TokenDTO, TokenUpdateDTO } from "../dtos/token.dto"
 import tokenRepository from "../repositories/token.repository"
-import { IToken, TokenToUpdate } from "../types"
 
 const getToken = async (tokenSymbol: string) => {
   return await tokenRepository.getToken(tokenSymbol)
 }
 
-const createToken = async (token: IToken) => {
+const createToken = async (token: TokenDTO) => {
   return await tokenRepository.createToken(token)
 }
 
-const updateToken = async (token: TokenToUpdate) => {
+const updateToken = async (token: TokenUpdateDTO) => {
   return await tokenRepository.updateToken(token)
 }
 

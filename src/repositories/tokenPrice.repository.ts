@@ -1,4 +1,4 @@
-import { AppDataSource } from "../db/dataSource"
+import { AppDataSource } from "../db/data-source"
 import { TokenPrice } from "../entities/tokenPrice.entity"
 import tokenRepository from "./token.repository"
 
@@ -19,7 +19,7 @@ const getLastTokenPrice = async (tokenSymbol: string) => {
   return lastPrice
 }
 
-const createTokenPrice = async (tokenSymbol: string, priceData: number) => {
+const createTokenPrice = async (tokenSymbol: string, priceData: string) => {
   const tokenPriceRepository = AppDataSource.getRepository(TokenPrice)
 
   const token = await tokenRepository.getToken(tokenSymbol)

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { AppError } from "../utils/AppError"
 import tokenService from "../services/token.service"
-import { IToken, TokenToUpdate } from "../types"
+import { TokenDTO, TokenUpdateDTO } from "../dtos/token.dto"
 
 const getToken = async (req: Request, res: Response, next: NextFunction) => {
   const tokenSymbol = req.query.symbol as string
@@ -19,7 +19,7 @@ const getToken = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 const createToken = async (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = req.body as IToken | null
+  const tokenData = req.body as TokenDTO
 
   try {
     const token = await tokenService.createToken(tokenData)
@@ -30,7 +30,7 @@ const createToken = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 const updateToken = async (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = req.body as TokenToUpdate | null
+  const tokenData = req.body as TokenUpdateDTO
 
   try {
     const token = await tokenService.updateToken(tokenData)

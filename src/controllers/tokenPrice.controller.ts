@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import { AppError } from "../utils/AppError"
 import tokenPriceService from "../services/tokenPrice.service"
-import { ITokenPrice } from "../types"
+import { TokenPriceDTO } from "../dtos/tokenPrice.dto"
 
 const getTokenPrice = async (req: Request, res: Response, next: NextFunction) => {
   const tokenSymbol = req.query.symbol as string
@@ -19,7 +19,7 @@ const getTokenPrice = async (req: Request, res: Response, next: NextFunction) =>
 }
 
 const createTokenPrice = async (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = req.body as ITokenPrice | null
+  const tokenData = req.body as TokenPriceDTO
 
   try {
     const token = await tokenPriceService.createTokenPrice(tokenData)

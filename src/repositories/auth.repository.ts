@@ -1,9 +1,9 @@
+import jwt from "jsonwebtoken"
 import { AppDataSource } from "../db/data-source"
 import { User } from "../entities/user.entity"
-import { IUser } from "../types"
-import jwt from "jsonwebtoken"
+import { UserDTO } from "../dtos/auth.dto"
 
-const register = async (userData: IUser) => {
+const register = async (userData: UserDTO) => {
   const { email, password } = userData
   const userRepository = AppDataSource.getRepository(User)
 
@@ -20,7 +20,7 @@ const register = async (userData: IUser) => {
 }
 
 // TODO: email and password validations. add directly to entity?
-export async function login(userData: IUser) {
+export async function login(userData: UserDTO) {
   const { email, password } = userData
   const userRepository = AppDataSource.getRepository(User)
 

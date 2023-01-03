@@ -1,13 +1,13 @@
+import { TokenPriceDTO } from "../dtos/tokenPrice.dto"
 import tokenPriceRepository from "../repositories/tokenPrice.repository"
-import { ITokenPrice } from "../types"
 
 const getTokenPrice = async (tokenSymbol: string) => {
   return await tokenPriceRepository.getLastTokenPrice(tokenSymbol)
 }
 
-const createTokenPrice = async (tokenPrice: ITokenPrice) => {
-  const { tokenSymbol, price } = tokenPrice
-  return await tokenPriceRepository.createTokenPrice(tokenSymbol, Number(price))
+const createTokenPrice = async (tokenPrice: TokenPriceDTO) => {
+  const { tokenSymbol, value } = tokenPrice
+  return await tokenPriceRepository.createTokenPrice(tokenSymbol, value.toLocaleString())
 }
 
 const getAllTokenPrices = async (tokenSymbol: string) => {
