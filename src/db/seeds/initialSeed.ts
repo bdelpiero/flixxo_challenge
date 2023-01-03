@@ -14,18 +14,21 @@ export default class InitialDatabaseSeed implements Seeder {
       // the seeding should be handled as a separate script
       if ((await tokenRepository.count()) !== 0) return
 
-      const tokens: Token[] = []
+      const tokens: Record<string, Token> = {}
 
       for (let i = 0; i < 5; i++) {
         const token: Token = new Token()
         token.symbol = faker.finance.currencyCode()
         token.name = faker.finance.currencyName()
         token.additionalInfo = faker.lorem.sentence()
-        tokens.push(token)
+
+        // workaround for preventing faker from generating two tokens with same symbol
+        if (tokens[token.symbol]) continue
+        tokens[token.symbol] = token
       }
 
       // Save the tokens to the database
-      const savedTokens = await tokenRepository.save(tokens)
+      const savedTokens = await tokenRepository.save(Object.values(tokens))
 
       const tokenPriceRepository = dataSource.getRepository(TokenPrice)
       const prices: TokenPrice[] = []
