@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from "typeorm"
-import { runSeeders, SeederOptions } from "typeorm-extension"
+import { SeederOptions } from "typeorm-extension"
 
 // TODO: fix port type
 const options: DataSourceOptions & SeederOptions = {
@@ -19,14 +19,3 @@ const options: DataSourceOptions & SeederOptions = {
 }
 
 export const AppDataSource = new DataSource(options)
-
-export const initDataSource = async () => {
-  try {
-    const dataSource = await AppDataSource.initialize()
-    await runSeeders(dataSource)
-    console.log("Data Source has been initialized!")
-  } catch (err) {
-    console.log(`Error during Data source initialization: ${err}`)
-  }
-  return null
-}

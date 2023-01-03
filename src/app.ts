@@ -4,31 +4,33 @@ import dotenv from "dotenv"
 import { AppError } from "./utils/AppError"
 import { errorHandler } from "./middleware/errorHandler"
 import apiRouter from "./routes/apiRouter"
-import { initDataSource } from "./db/data-source"
+import { initDataSource } from "./db/init"
 
 dotenv.config()
 
 const port = process.env.PORT
-const app = express()
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+initDataSource()
+  .then(() => {
+    const app = express()
 
-app.get("/ping", (_: Request, res: Response) => res.send("pong"))
+    app.use(cors())
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
 
-app.use("/api", apiRouter)
+    app.get("/ping", (_: Request, res: Response) => res.send("pong"))
 
-// UNHANDLED ROUTE
-app.all("*", (req: Request, _: Response, next: NextFunction) => {
-  next(new AppError(404, `Route ${req.originalUrl} not found`))
-})
+    app.use("/api", apiRouter)
 
-app.use(errorHandler)
+    // UNHANDLED ROUTE
+    app.all("*", (req: Request, _: Response, next: NextFunction) => {
+      next(new AppError(404, `Route ${req.originalUrl} not found`))
+    })
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-})
-;(async () => {
-  await initDataSource()
-})()
+    app.use(errorHandler)
+
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`)
+    })
+  })
+  .catch((e) => console.error(e))
