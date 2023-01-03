@@ -19,7 +19,6 @@ const register = async (userData: UserDTO) => {
   await userRepository.save(newUser)
 }
 
-// TODO: email and password validations. add directly to entity?
 export async function login(userData: UserDTO) {
   const { email, password } = userData
   const userRepository = AppDataSource.getRepository(User)

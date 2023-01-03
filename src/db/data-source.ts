@@ -1,7 +1,6 @@
 import { DataSource, DataSourceOptions } from "typeorm"
 import { SeederOptions } from "typeorm-extension"
 
-// TODO: fix port type
 const options: DataSourceOptions & SeederOptions = {
   type: "mysql",
   host: process.env.DB_HOST,
