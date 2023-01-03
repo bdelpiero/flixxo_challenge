@@ -30,8 +30,6 @@ const updateToken = async (tokenData: TokenUpdateDTO) => {
     throw new Error(`Token ${symbol} does not exist in our database`)
   }
 
-  // TODO: improve way of performing this update
-  // with a correct dto validation, I could just pass {...tokenData} to the save function
   return await tokenRepository.save({
     id: token.id,
     ...tokenData,
