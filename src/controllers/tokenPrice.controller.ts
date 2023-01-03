@@ -11,7 +11,7 @@ const getTokenPrice = async (req: Request, res: Response, next: NextFunction) =>
   }
 
   try {
-    const token = await tokenPriceService.getTokenPrice(tokenSymbol)
+    const token = await tokenPriceService.getLastTokenPrice(tokenSymbol)
     res.send(token)
   } catch (error) {
     return next(new AppError(500, error))
@@ -37,7 +37,7 @@ const getTokenHistoricalPrices = async (req: Request, res: Response, next: NextF
   }
 
   try {
-    const tokens = await tokenPriceService.getAllTokenPrices(tokenSymbol)
+    const tokens = await tokenPriceService.getTokenPrices(tokenSymbol)
     res.send(tokens)
   } catch (error) {
     return next(new AppError(500, error))
